@@ -95,16 +95,17 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             'model',
+            default_value='cobotta_pro',
             description='Type/series of used denso robot.'))
     # TODO: shall we let the user to only select from a list of robots ??
     # choices=['cobotta', 'vs060', 'vs087']))
     declared_arguments.append(
         DeclareLaunchArgument(
-            'send_format', default_value='288',
+            'send_format', default_value='0',
             description='Data format for sending commands to the robot.'))
     declared_arguments.append(
         DeclareLaunchArgument(
-            'recv_format', default_value='292',
+            'recv_format', default_value='2',
             description='Data format for receiving robot status.'))
     declared_arguments.append(
         DeclareLaunchArgument(
@@ -112,7 +113,7 @@ def generate_launch_description():
             description='Control frequency.'))
     declared_arguments.append(
         DeclareLaunchArgument(
-            'ip_address', default_value='192.168.0.1',
+            'ip_address', default_value='192.168.0.102',
             description='IP address by which the robot can be reached.'))
 # Configuration arguments
     declared_arguments.append(
@@ -154,11 +155,11 @@ def generate_launch_description():
 #    )
     declared_arguments.append(
         DeclareLaunchArgument(
-            'sim', default_value='true',
+            'sim', default_value='false',
             description='Start robot with fake hardware mirroring command to its states.'))
     declared_arguments.append(
         DeclareLaunchArgument(
-            'verbose', default_value='false',
+            'verbose', default_value='true',
             description='Print out additional debug information.'))
 
 # Initialize Arguments
@@ -319,6 +320,8 @@ def generate_launch_description():
             'stdout': 'screen',
             'stderr': 'screen',
         })
+        # prefix=['xterm -e gdb -ex run --args'])
+
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',

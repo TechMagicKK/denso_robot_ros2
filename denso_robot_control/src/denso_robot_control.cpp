@@ -306,6 +306,7 @@ namespace denso_robot_control
 
   HRESULT DensoRobotControl::ChangeModeWithClearError(int mode)
   {
+    RCLCPP_WARN(rclcpp::get_logger(node_->get_name()), "Change mode with clear error is called.");
     HRESULT hr = eng_->ChangeMode(mode, mode == DensoRobot::SLVMODE_NONE);
     if (FAILED(hr)) {
       // Clear Error
